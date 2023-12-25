@@ -1,0 +1,70 @@
+﻿<UserControl x:Class="FourSeasons.View.CheckInWindow"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"             
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:FourSeasons.View"
+             mc:Ignorable="d" 
+             d:DesignHeight="500" d:DesignWidth="953">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="3*" />
+            <ColumnDefinition Width="4*" />
+        </Grid.ColumnDefinitions>
+
+        <StackPanel Grid.Column="1" Background="White">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="1*" />
+                    <RowDefinition Height="10*" />
+                </Grid.RowDefinitions>
+                <Label Grid.Row="0" Name="headLb" Content= "ПАРАМЕТРЫ БРОНИРОВАНИЯ" Margin="0 20 0 20" HorizontalAlignment= "Center" VerticalAlignment="Top" FontFamily= "Calibri" FontSize= "25" FontWeight= "Medium" Foreground= "#077473" />
+                <Grid Grid.Row="1">
+                    <StackPanel>
+                        <Border Visibility="Visible" Background="#b3ebeb" BorderBrush="#b3ebeb" CornerRadius="20" Height="380" Width="490">
+                            <Grid>
+                                <Label Content="ЗАКАЗЧИК: " Name="nameLb" HorizontalAlignment="Center" Margin="0 10 0 0" FontFamily="Calibri" FontSize="20" FontWeight="Medium" Foreground="#077473"/>
+                                <Label Content="КОЛИЧЕСТВО ГОСТЕЙ: " Name="clientsLb" HorizontalAlignment="Center" Margin="0 55 0 0" FontFamily="Calibri" FontSize="20" FontWeight="Medium" Foreground="#077473"/>
+                                <Label Content="НОМЕР: " Name="roomLb" HorizontalAlignment="Center" Margin="0 100 0 0" FontFamily="Calibri" FontSize="20" FontWeight="Medium" Foreground="#077473"/>
+                                <Label Content="ДАТА ЗАЕЗДА: " Name="inWLb" HorizontalAlignment="Left" Margin="30 190 0 0" FontFamily="Calibri" FontSize="20" FontWeight="Medium" Foreground="#077473"/>
+                                <Label Content="ДАТА ЗАЕЗДА" Name="inLb" HorizontalAlignment="Center" Margin="50 190 0 0" FontFamily="Calibri" FontSize="20" FontWeight="Medium" Foreground="#077473"/>
+                                <Label Content="ДАТА ВЫЕЗДА: " Name="outWLb" HorizontalAlignment="Left" Margin="30 235 0 0" FontFamily="Calibri" FontSize="20" FontWeight="Medium" Foreground="#077473"/>
+                                <Label Content="ДАТА ВЫЕЗДА" Name="outLb" HorizontalAlignment="Center" Margin="60 235 0 0" FontFamily="Calibri" FontSize="20" FontWeight="Medium" Foreground="#077473"/>
+                                <Label Content="УСЛУГИ: " Name="servicesLb" HorizontalAlignment="Left" Margin="30 145 0 0" FontFamily="Calibri" FontSize="20" FontWeight="Medium" Foreground="#077473"/>
+                                <ComboBox Name="serviceComboBox" Margin="0 145 30 200" Height="30" Width="270" HorizontalAlignment="Right" FontFamily="Calibri" FontSize="16">
+                                </ComboBox>
+                                <Label Content="ОБЩАЯ СТОИМОСТЬ: " Name="costLb" HorizontalAlignment="Left" Margin="30 280 0 0" FontFamily="Calibri" FontSize="20" FontWeight="Medium" Foreground="#077473"/>
+                                <Label Content="НЕОБХОДИМО ВНЕСТИ: " Name="paymentLb" HorizontalAlignment="Left" Margin="30 325 0 0" FontFamily="Calibri" FontSize="20" FontWeight="Medium" Foreground="#077473"/>
+                                <Image Name="passportHint" Source="passport.png" HorizontalAlignment="Center" VerticalAlignment="Center" Width="450" />
+                            </Grid>
+                        </Border>
+                    </StackPanel>
+
+                </Grid>
+            </Grid>
+        </StackPanel>
+
+        <StackPanel Grid.Column="0" Background="#b3ebeb">
+            <Grid x:Name= "bookstk">
+                <Label Content="ВВЕДИТЕ ДАННЫЕ" HorizontalAlignment="Center" Margin="0 40 0 0" FontFamily="Calibri" FontSize="30" FontWeight="Medium" Foreground="#077473"/>
+                <StackPanel HorizontalAlignment="Center" Margin="0 120 0 0" >
+                    <Grid>
+
+                        <Label Content="Паспортные данные:" HorizontalAlignment="Left" Margin="30 5 0 0" FontFamily="Calibri" FontSize="15" Foreground="#077473"></Label>
+                        <TextBox Name="passportTxb" Height="25" Width="250" HorizontalAlignment="Center" Margin="50 0 0 230" FontFamily="Calibri" FontSize="16" Text="1111222222" />
+
+                        <Label Content="Внесённая сумма:" Name="payLb" HorizontalAlignment="Left" Margin="30 70 140 0" FontFamily="Calibri" FontSize="15" Foreground="#077473"></Label>
+                        <xctk:IntegerUpDown Name="payUpDown" Margin="70,98,113,197" Value="0" Height="25" Minimum="0" FontSize="16" FontFamily="Calibri"/>
+
+
+                        <Button BorderBrush="{x:Null}" Content="НАЙТИ"  Margin="0 260 0 0" x:Name="btnToCheckIn" Command="{Binding ToCheckInCommand}" Height="35" Width="180" FontSize="20"/>
+                        <Button BorderBrush="{x:Null}" Content="ЗАСЕЛИТЬ"  Margin="0 260 0 0" x:Name="btnCompleteCheckIn" Command="{Binding CompleteCheckInCommand}" Height="35" Width="180" FontSize="20"/>
+                        <Button BorderBrush="{x:Null}" Content="ВЫСЕЛИТЬ"  Margin="0 260 0 0" x:Name="btnCompleteCheckOut" Command="{Binding CompleteCheckOutCommand}" Height="35" Width="180" FontSize="20"/>
+
+                    </Grid>
+                </StackPanel>
+            </Grid>
+        </StackPanel>
+    </Grid>
+</UserControl>

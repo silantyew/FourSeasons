@@ -1,0 +1,51 @@
+﻿<Window x:Class="FourSeasons.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:FourSeasons"
+        mc:Ignorable="d" Width="960" Height="630" WindowStartupLocation="CenterScreen" Title="Four Seasons" Icon="hotelicon.png" FontFamily="Gabriola" Topmost="False">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="15*" />
+            <RowDefinition Height="1*" />
+        </Grid.RowDefinitions>
+
+        <Grid Grid.Row="1" Background="#FFBAEDF7">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1.3*" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+
+            <Grid Grid.Column="0">
+                <Button BorderBrush="{x:Null}" Content="ЗАБРОНИРОВАТЬ НОМЕР" x:Name="btnBooking" Command="{Binding BookingCommand}"/>
+            </Grid>
+
+            <Grid Grid.Column="1">
+                <Button BorderBrush="{x:Null}" Content="ЗАСЕЛИТЬ" x:Name="btnCheckIn" Command="{Binding CheckInCommand}"/>
+            </Grid>
+
+            <Grid Grid.Column="2">
+                <Button BorderBrush="{x:Null}" Content="ВЫСЕЛИТЬ" x:Name="btnCheckOut" Command="{Binding CheckInCommand}"/>
+            </Grid>
+
+            <Grid Grid.Column="3">
+                <Button BorderBrush="{x:Null}" Content="УСЛУГИ" x:Name="btnServices" Command="{Binding EditServCommand}"/>
+            </Grid>
+
+            <Grid Grid.Column="4">
+                <Button BorderBrush="{x:Null}" Content="ОТЧЁТ О ВЫРУЧКЕ" x:Name="btnIncome" Command="{Binding IncomeCommand}"/>
+            </Grid>
+
+        </Grid>
+
+        <Grid Grid.Row="0" Name="stk">
+            <Image Source="main.jpg" HorizontalAlignment="Center" VerticalAlignment="Top" />
+        </Grid>
+
+    </Grid>
+
+</Window>

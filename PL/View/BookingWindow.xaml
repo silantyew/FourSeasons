@@ -1,0 +1,97 @@
+﻿<UserControl x:Class="FourSeasons.View.BookingWindow"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:sys="clr-namespace:System;assembly=mscorlib"
+             xmlns:local="clr-namespace:FourSeasons.View"
+             mc:Ignorable="d" 
+             d:DesignHeight="500" d:DesignWidth="953">
+    <UserControl.Resources>
+        <Style x:Key="bookBtn" TargetType="{x:Type Button}">
+            <Setter Property="Command" Value="{Binding DataContext.CreateBookingCommand, RelativeSource={RelativeSource AncestorType={x:Type UserControl}}}" />
+            <Setter Property="CommandParameter" Value="{Binding RelativeSource={RelativeSource Self}}"/>
+        </Style>
+        <Button x:Key="luxButton" x:Shared="False" Style="{StaticResource bookBtn}" Foreground="White" FontSize="23" FontWeight="Medium" FontFamily="Calibri" VerticalAlignment="Top" HorizontalAlignment= "Center" Height="40" Width="400" Background="#FFB7E9F3">
+            <TextBlock Text="ЛЮКС" TextWrapping="Wrap"/>
+        </Button>
+
+        <Button x:Key="standardButton" x:Shared="False" Style="{StaticResource bookBtn}" FontSize="23" FontWeight="Medium" Foreground="White" FontFamily="Calibri" VerticalAlignment="Top" HorizontalAlignment= "Center" Height="40" Width="400" Background="#FFB5EAD5">
+            <TextBlock Text="СТАНДАРТ"/>
+        </Button>
+
+        <Button x:Key="economyButton" x:Shared="False" FontSize="23" Style="{StaticResource bookBtn}" FontWeight="Medium" Foreground="White" FontFamily="Calibri" VerticalAlignment="Top" HorizontalAlignment= "Center" Height="40" Width="400" Background="#FFE0E0C0">
+            <TextBlock Text="ЭКОНОМ"/>
+        </Button>
+
+    </UserControl.Resources>
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="3*" />
+            <ColumnDefinition Width="4*" />
+        </Grid.ColumnDefinitions>
+
+        <ScrollViewer Grid.Column="1" Background="White">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="1*" />
+                    <RowDefinition Height="10*" />
+                </Grid.RowDefinitions>
+                <Label Grid.Row="0" Content= "ДОСТУПНЫЕ НОМЕРА" Margin="0 10 0 10" HorizontalAlignment= "Center" VerticalAlignment="Top" FontFamily= "Calibri" FontSize= "20" FontWeight= "Medium" Foreground= "#077473" />
+                <Grid Grid.Row="1" Name= "listing"/>
+            </Grid>
+        </ScrollViewer>
+
+        <StackPanel Grid.Column="0" Background="#b3ebeb">
+            <Label Content="НАЙТИ НОМЕР" HorizontalAlignment="Center" Margin="0 40 0 0" FontFamily="Calibri" FontSize="30" FontWeight="Medium" Foreground="#077473"/>
+            <StackPanel HorizontalAlignment="Center" Margin="0 40 0 0" >
+                <Grid>
+
+                    <Label Content="Количество человек:" HorizontalAlignment="Center" Margin="0 0 90 0" FontFamily="Calibri" FontSize="15" Foreground="#077473"></Label>
+                    <xctk:IntegerUpDown Name="peopleAmountUpDown" Margin="201,3,29,267" Value="1" Width="100" Height="25" Minimum="1" Maximum="5" FontSize="16" FontFamily="Calibri"/>
+
+                    <Label Content="Диапазон стоимости:" HorizontalAlignment="Center" Margin="0 60 90 0" FontFamily="Calibri" FontSize="15" Foreground="#077473"></Label>
+                    <Label Content="от:" HorizontalAlignment="Left" Margin="10 90 0 0" FontFamily="Calibri" FontSize="15" Foreground="#077473"></Label>
+                    <Label Content="до:" HorizontalAlignment="Center" Margin="40 90 0 0" FontFamily="Calibri" FontSize="15" Foreground="#077473"></Label>
+                    <xctk:IntegerUpDown Name="minPriceUpDown" Margin="40,94,190,176" Value="1400" Width="100" Height="25" Minimum="1400" Maximum="2800" FontFamily="Calibri" FontSize="16"/>
+                    <xctk:IntegerUpDown Name="maxPriceUpDown" Margin="205,94,25,176" Value="2800" Width="100" Height="25" Minimum="1400" Maximum="2800" FontFamily="Calibri" FontSize="16"/>
+
+                    <Label Content="Даты пребывания:" HorizontalAlignment="Center" Margin="40,125,160.8,0" FontFamily="Calibri" FontSize="15" Foreground="#077473"></Label>
+                    <Label Content="с:" HorizontalAlignment="Left" Margin="15 155 0 0" FontFamily="Calibri" FontSize="15" Foreground="#077473"></Label>
+                    <Label Content="по:" HorizontalAlignment="Center" Margin="40 155 0 0" FontFamily="Calibri" FontSize="15" Foreground="#077473"></Label>
+                    <DatePicker Name="inDate" Margin="38,157,182,113" Height="25" Width="110" SelectedDate="{x:Static sys:DateTime.Now}" FontFamily="Calibri" FontSize="14"/>
+                    <DatePicker Name="outDate" Margin="202,157,18,113" Height="25" Width="110" SelectedDate="{x:Static sys:DateTime.Now}" FontFamily="Calibri" FontSize="14"/>
+
+                    <Label Content="Тип комнаты:" HorizontalAlignment="Center" Margin="0 200 140 0" FontFamily="Calibri" FontSize="15" Foreground="#077473"></Label>
+                    <ComboBox Name="roomTypeComboBox" Margin="159,205,0,65" Height="25" Width="120" HorizontalAlignment="Left" FontFamily="Calibri" FontSize="14">
+                        <ComboBoxItem Name="All" IsSelected="True">
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock>Все</TextBlock>
+                            </StackPanel>
+                        </ComboBoxItem>
+                        <ComboBoxItem Name="Economy">
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock>Стандарт</TextBlock>
+                            </StackPanel>
+                        </ComboBoxItem>
+                        <ComboBoxItem Name="Standard">
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock>Эконом</TextBlock>
+                            </StackPanel>
+                        </ComboBoxItem>
+                        <ComboBoxItem Name="Lux">
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock>Люкс</TextBlock>
+                            </StackPanel>
+                        </ComboBoxItem>
+                    </ComboBox>
+
+                    <Button BorderBrush="{x:Null}" Content="ПОИСК"  Margin="0 260 0 0" x:Name="btnSearch" Command="{Binding SearchingCommand}" Height="35" Width="100" FontSize="20"/>
+
+                </Grid>
+            </StackPanel>
+        </StackPanel>
+    </Grid>
+</UserControl>
